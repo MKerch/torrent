@@ -1,0 +1,5 @@
+/torrent-client-rest/target
+/torrent-swing-client/target
+/torrent-service/target
+/torrent-service/nbactions.xml
+/torrent-service/nb-configuration.xml
