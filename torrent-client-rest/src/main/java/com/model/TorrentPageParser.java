@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.app.service.remote;
+package com.model;
 
 import java.util.List;
 
@@ -11,11 +11,8 @@ import java.util.List;
  *
  * @author kerch
  */
-public interface GetParam {
+public interface TorrentPageParser {
     
-    public List<String> getCategory();
-    
-    public String getTorrentHref(String page);
-    
+    public List<TorrentItem> parsePage(String[] content);
     
 }

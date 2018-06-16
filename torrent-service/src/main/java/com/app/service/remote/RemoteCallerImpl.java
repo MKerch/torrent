@@ -5,42 +5,34 @@
  */
 package com.app.service.remote;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import com.http.communication.internal.api.HttpRequestAPI;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Form;
-import javax.ws.rs.core.Response;
-import org.apache.commons.io.FileUtils;
 
 /**
  *
  * @author kerch
  */
 public class RemoteCallerImpl implements RemoteCaller {
-    private Client client = ClientBuilder.newClient();
-   
+
     @Override
     public boolean login(String username, String password) {
-        Form form  = new Form();
-        form.param("login_username", username);
-        form.param("login_password", password);
-        form.param("login", "Вход");
-        Response response=client.target("http://rutracker.org/form/login.php").request().post(Entity.form(form));
-        
-        System.out.println(response);
-        System.out.println("-------Cookie---------");
-        System.out.println(response.getCookies());
-        return true;
+        HttpRequestAPI request = HttpRequestAPI.getPostRequest("http://rutracker.org/forum/login.php");
+        request.addParameter("login_username", "torrentme2");
+        request.addParameter("login_password", "torrentmetorrentme");
+        request.addParameter("login", "Вход");
+        request.connect();
+        System.out.println(request.getCookies());
+        boolean loginResult = false;
+        if (request.getCookies() != null && !request.getCookies().isEmpty()) {
+            loginResult = true;
+        }
+        return loginResult;
     }
 
-    
-
+    //@Override
+    public List<String> getCategory() {
+        return Arrays.asList("A", "B", "C");
+    }
 
 }
