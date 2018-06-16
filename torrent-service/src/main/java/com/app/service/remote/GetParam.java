@@ -11,10 +11,10 @@ import java.util.List;
  *
  * @author kerch
  */
-public interface RemoteCaller {
+public interface GetParam {
+    public List<String> getCategory();
     
-    public boolean login(String username, String password);
-    
+    public String getTorrentHref(String page);
     
     
 }

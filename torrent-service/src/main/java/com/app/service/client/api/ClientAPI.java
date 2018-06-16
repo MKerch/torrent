@@ -32,11 +32,11 @@ public class ClientAPI {
     public boolean login(@PathParam("username") String username, @PathParam("password") String password){
         return remoteCaller.login(username, password);
     }    
-    
-    @GET
-    @Path("/category")
-    //@Produces(MediaType)
-    public List<String> getCategory(){
-        return remoteCaller.getCategory();
-    }
+
+//    @GET
+//    @Path("/category")
+//    @Produces(MediaType)
+//    public List<String> getCategory(){
+//        return remoteCaller.getCategory();
+//    }
 }
