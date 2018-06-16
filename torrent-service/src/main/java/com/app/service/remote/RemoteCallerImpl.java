@@ -5,6 +5,7 @@
  */
 package com.app.service.remote;
 
+import com.http.communication.internal.api.HttpRequestAPI;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +17,17 @@ public class RemoteCallerImpl implements RemoteCaller {
 
     @Override
     public boolean login(String username, String password) {
-        return true;
+        HttpRequestAPI request = HttpRequestAPI.getPostRequest("http://rutracker.org/forum/login.php");
+        request.addParameter("login_username", username);
+        request.addParameter("login_password", password);
+        request.addParameter("login", "Вход");
+        request.connect();
+        System.out.println(request.getCookies());
+        boolean loginResult = false;
+        if (request.getCookies() != null && !request.getCookies().isEmpty()) {
+            loginResult = true;
+        }
+        return loginResult;
     }
 
     @Override
