@@ -12,6 +12,7 @@ import java.util.List;
  * @author kerch
  */
 public class ClientApp extends javax.swing.JFrame {
+
     private DataService dataService = new DataServiceImpl();
 
     /**
@@ -45,7 +46,7 @@ public class ClientApp extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("kerchmaksim@gmail.com");
+        jTextField1.setText("torrentme2");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -56,7 +57,12 @@ public class ClientApp extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        jTextField2.setText("Metrovision");
+        jTextField2.setText("torrentmetorrentme");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,11 +74,11 @@ public class ClientApp extends javax.swing.JFrame {
                         .addGap(92, 92, 92)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField2)))
+                            .addComponent(jTextField2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
+                        .addGap(135, 135, 135)
                         .addComponent(jButton1)))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
@@ -100,15 +106,22 @@ public class ClientApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String login=jTextField1.getText();
-       String password=jTextField2.getText();
-       boolean result=dataService.login(login, password);
-       System.out.println("Auth result="+result);
-       if(result){
-           //List<String> category=dataService.getCategory();
-           //System.out.println(category);
-       }
+        String login = jTextField1.getText();
+        String password = jTextField2.getText();
+        boolean result = dataService.login(login, password);
+        System.out.println("Auth result=" + result);
+
+        if (result) {
+            UserPanel userPanel = new UserPanel(dataService);
+            setContentPane(userPanel);
+            getContentPane().revalidate();
+            getContentPane().repaint();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments

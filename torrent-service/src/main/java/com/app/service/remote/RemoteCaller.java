@@ -5,6 +5,8 @@
  */
 package com.app.service.remote;
 
+import com.app.service.client.api.CategoryData;
+import com.app.service.client.api.SearchRequestParameters;
 import java.util.List;
 
 /**
@@ -15,6 +17,8 @@ public interface RemoteCaller {
     
     public boolean login(String username, String password);
     
+    public CategoryData getCategory();
     
+    public String getSearchResult(SearchRequestParameters searchRequestParameters, String username);
     
 }

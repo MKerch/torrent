@@ -13,6 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
@@ -32,11 +33,19 @@ public class ClientAPI {
     public boolean login(@PathParam("username") String username, @PathParam("password") String password){
         return remoteCaller.login(username, password);
     }    
+    
+    @POST
+    @Path("/search/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String search(SearchRequestParameters searchRequestParameters, @PathParam("username") String username){
+        return remoteCaller.getSearchResult(searchRequestParameters, username);
+    }
 
-//    @GET
-//    @Path("/category")
-//    @Produces(MediaType)
-//    public List<String> getCategory(){
-//        return remoteCaller.getCategory();
-//    }
+    @GET
+    @Path("/category")
+    @Produces(MediaType.APPLICATION_JSON)
+    public CategoryData getCategory(){
+        return remoteCaller.getCategory();
+    }
 }

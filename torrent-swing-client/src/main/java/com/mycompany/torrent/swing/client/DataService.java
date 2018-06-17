@@ -16,6 +16,8 @@ public interface DataService {
     
     public boolean login(String login, String password);
     
-    public List<String> getCategory();
+    public CategoryData getCategory();
+    
+    public String search(SearchRequestParameters parameters);
     
 }
